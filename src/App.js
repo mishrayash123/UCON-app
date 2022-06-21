@@ -82,6 +82,10 @@ function App() {
                 <Forget />
                 <Footer />
             </div>} />
+            <Route path="/sites" element={<div>
+                <Sites />
+                <Footer />
+            </div>} />
             </Routes>
         </BrowserRouter>
         
