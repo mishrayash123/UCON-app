@@ -22,7 +22,7 @@ export default function Forget() {
     };
 
     return (
-        <div className="mt-5">
+        <div className="mt-5 mb-72">
             <form onSubmit={forgetpassword} 
                 className="mx-auto w-50 mt-5 bg-light text-dark bg-opacity-10 border border-light border border-3 border-opacity-10 rounded">
                 <h5 className="text-center m-3 text-light">Forget Password</h5>
@@ -44,9 +44,6 @@ export default function Forget() {
             <button type="submit" className="btn btn-dark m-3"
               onClick={forgetpassword} >Send reset link</button>
         </form>
-        <div className=" mt-5">
-            <h5 className=" text-center text-light">Made ♡  by Yash</h5>
-        </div>
     </div>
     );
 }

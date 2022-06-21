@@ -4,7 +4,7 @@ const Contest = (props) => {
     const {contest} = props;
 
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4 m-4">
+        <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72">
             {
             contest.map(contest => (
                 <div className="col">

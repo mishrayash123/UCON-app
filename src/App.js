@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.css';
 import Navbar from './components/Navbar';
 import Searchbar from './components/Searchbar';
 import {useEffect, useState} from "react";
@@ -54,8 +55,7 @@ function App() {
     return (
 
         <BrowserRouter>
-       <Navbar/>
-       <Sites />
+       <Navbar />
        <Searchbar search={search}
                 onSubmit={onSearchClick}
                 onInputChange={onInputChange}
@@ -63,16 +63,25 @@ function App() {
             <Routes>
                 <Route path="/login" element={<div>
                 <Login />
-                
+                <Footer />
             </div>}  />
             <Route path="/" element={
                 <div className="App">
-                 <> { yash ? <div> <Contest contest={contest} /> <Footer /></div>: <Login />
+                 <> { yash ? <div> <Contest contest={contest} /> <Footer /></div>: <div>
+                <Login />
+                <Footer />
+            </div>
                 } </>   
             </div>
             } />
-            <Route path="/signup" element={<Signup />} />
-         <Route path="/forget" element={<Forget />} />
+            <Route path="/signup" element={<div>
+                <Signup />
+                <Footer />
+            </div>} />
+         <Route path="/forget" element={<div>
+                <Forget />
+                <Footer />
+            </div>} />
             </Routes>
         </BrowserRouter>
         
