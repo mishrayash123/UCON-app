@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import img1 from "./img1.png"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
@@ -10,6 +10,7 @@ const Navbar =props => {
   const [isOpen, setIsOpen] = useState(false);
   const [ya, setya] = useState(false);
   const [st, setst] = useState("");
+  const divRef = useRef()
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -133,7 +134,7 @@ const Navbar =props => {
         >
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <Link
                   to="/"
                   className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
