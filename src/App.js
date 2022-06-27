@@ -13,12 +13,14 @@ import Forget from './components/Forget';
 import Sites from './components/Sites';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase-config";
+import Fav from "./components/Fav"
 
 
 function App() {
     const [search, setSearch] = useState("all");
     const [contest, setcontest] = useState([]);
     const [yash, setyash] = useState(false);
+    const [fav, setfav] = useState([]);
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -55,7 +57,7 @@ function App() {
     return (
 
         <BrowserRouter>
-       <Navbar />
+       <Navbar setfav={setfav} />
        <Searchbar search={search}
                 onSubmit={onSearchClick}
                 onInputChange={onInputChange}
@@ -86,6 +88,16 @@ function App() {
                 <Sites />
                 <Footer />
             </div>} />
+            <Route path="/fav" element={<div>
+          <> { yash ? 
+                    <div> <Fav fav={fav}/> <Footer />
+                    </div> : <div>
+                    <Login />
+                    <Footer />  
+                    </div>
+                } </>
+          
+          </div>} />
             </Routes>
         </BrowserRouter>
         

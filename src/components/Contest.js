@@ -1,7 +1,23 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import { doc, setDoc ,deleteDoc} from "firebase/firestore";
+import { db } from "./firebase-config"; 
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase-config";
+import {  getDoc } from "firebase/firestore";
 
 const Contest = (props) => {
     const {contest} = props;
+    const [uid, setuid] = useState("");
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+          setuid(user.uid);
+          } else {
+           setuid("");
+          }
+        });
+        
+      }, [auth.currentUser]);
 
     return (
         <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72">
@@ -43,13 +59,37 @@ const Contest = (props) => {
                                         contest.end_time
                                     }</h6>
                                 </li>
+                                <div className="border border-light border  border-opacity-25">
                                 <a href={
                                 contest.url
                             }
-                            className="btn text-light"
+                        
+                            className="btn  text-light bg-light  bg-opacity-10  w-100"
                             target="_blank"
-                            rel="noreferrer noopener">Register</a>  
-                            </ul>
+                            rel="noreferrer noopener">Register &#10148;</a> 
+                            </div> 
+                            <div className="border border-light border  border-opacity-25">
+                            <button  className="btn  text-light bg-light  bg-opacity-10  w-100" onClick={
+                       async (e) =>{
+                            const docRef = doc(db, uid,contest.name );
+                            const docSnap = await getDoc(docRef);
+                            if (docSnap.exists()) {
+                                alert("Already in favourites");
+                              } else {
+                                setDoc(doc(db,uid,contest.name), {
+                                    name : contest.name,
+                                    site : contest.site,
+                                    start_time:contest.start_time,
+                                    end_time: contest.end_time,
+                                    url : contest.url  
+                                  }
+                                  );
+                                  alert("Copied in favourites");
+                              }
+                       }
+                    }> Add to fav &#9829;</button>
+                    </div>
+                    </ul>
                         </div>
                     </div>
                 </div>

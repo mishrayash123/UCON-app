@@ -3,28 +3,42 @@ import img1 from "./img1.png"
 import React, {useEffect, useState, useRef} from "react";
 import {Link} from "react-router-dom";
 import {signOut, onAuthStateChanged} from "firebase/auth";
-import {auth} from "./firebase-config";
+import { auth,db } from "./firebase-config";
+import { collection } from "firebase/firestore";
+import {getDocs, } from "firebase/firestore";
 
 
 
 
-const Navbar =props => {
+const Navbar =({setfav}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [ya, setya] = useState(false);
   const [st, setst] = useState("");
+  const [uid, setuid] = useState("");
   const divRef = useRef()
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
+          setuid(user.uid);
             setst(user.email);
             setya(true);
             console.log(user);
         } else {
+          setuid(user.uid);
             setya(false);
         }
     });
+    fidata();
 }, [auth.currentUser]);
+
+const fidata = async () => {
+  const colRef = collection(db,uid);
+  const snapshots = await getDocs(colRef);
+  const docs = snapshots.docs.map(doc => doc.data());
+  setfav(docs);
+  console.log(docs);
+}
 
 const logout = async () => {
     signOut(auth).then(() => {
@@ -60,6 +74,9 @@ const logout = async () => {
                 <div className="ml-10 flex items-baseline space-x-4">
                 <Link to="/sites" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
                                     Sites
+                                </Link>
+                                <Link to="/fav" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium" onClick={fidata}>
+                                Favourites
                                 </Link>
                                 <Link to="/login" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">
                                     Log in
@@ -139,6 +156,9 @@ const logout = async () => {
                                 </Link>
                                 <Link to="/sites" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
                                     Sites
+                                </Link>
+                                <Link to="/fav" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium" onClick={fidata}>
+                                Favourites
                                 </Link>
                                 <Link to="/login" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
                                     Log in
