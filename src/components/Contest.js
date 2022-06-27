@@ -7,7 +7,7 @@ import {  getDoc } from "firebase/firestore";
 
 const Contest = (props) => {
     const {contest} = props;
-    const [uid, setuid] = useState("");
+    const [uid, setuid] = useState("hfhgbjhn");
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
           if (user) {

@@ -14,19 +14,19 @@ const Navbar =({setfav}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [ya, setya] = useState(false);
   const [st, setst] = useState("");
-  const [uid, setuid] = useState("");
+  const [uid, setuid] = useState("gfhjvjkbjhbh");
   const divRef = useRef()
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
+          setya(true);
           setuid(user.uid);
             setst(user.email);
-            setya(true);
             console.log(user);
         } else {
-          setuid(user.uid);
-            setya(false);
+          setya(false);
+          setuid("");
         }
     });
     fidata();

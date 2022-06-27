@@ -8,7 +8,7 @@ import { doc,deleteDoc} from "firebase/firestore";
 
 const Fav = (props) => {
     const {fav} = props;
-    const [uid, setuid] = useState("");
+    const [uid, setuid] = useState("hfhjgvhb");
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -16,7 +16,7 @@ const Fav = (props) => {
                
                 console.log(user);
             } else {
-              setuid(user.uid);
+                setuid("");
                
             }
         });
