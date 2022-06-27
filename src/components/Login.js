@@ -3,43 +3,38 @@ import {useState} from "react";
 import {Link} from 'react-router-dom'
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from './firebase-config';
-// import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import {FcGoogle} from "react-icons/fc";
 
 
 export default function Login() {
-   
+
     const [LoginEmail, setaLoginEmail] = useState("");
     const [LoginPassword, setLoginPassword] = useState("");
     const [sk, setsk] = useState("");
-//     const provider = new GoogleAuthProvider();
-//     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-//     auth.languageCode = 'it';
-//     provider.setCustomParameters({
-//         'login_hint': 'user@example.com'
-//       });
+    const provider = new GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    auth.languageCode = 'it';
+    provider.setCustomParameters({'login_hint': 'user@example.com'});
 
-//     const sum = async (event) => {
-//         signInWithPopup(auth, provider)
-//   .then((result) => {
-//     // This gives you a Google Access Token. You can use it to access the Google API.
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     const token = credential.accessToken;
-//     // The signed-in user info.
-//     const user = result.user;
-//     // ...
-//   }).catch((error) => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.customData.email;
-//     // The AuthCredential type that was used.
-//     const credential = GoogleAuthProvider.credentialFromError(error);
-//     // ...
-//   });
-        
-//     };
+    const sum = async (event) => {
+        signInWithPopup(auth, provider).then((result) => { // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+        }).catch((error) => { // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+
+    };
 
     const login = async (event) => {
         event.preventDefault();
@@ -51,46 +46,49 @@ export default function Login() {
             const errorCode = error.code;
             setsk(errorCode);
         });
-        
+
     };
 
     return (
         <div className="mt-5 mb-72">
-            <form onSubmit={login} 
+            <form onSubmit={login}
                 className="mx-auto w-50 mt-5  bg-light text-dark bg-opacity-10 border border-light border border-3 border-opacity-10 rounded">
                 <h5 className="text-center m-3 text-light text-2xl">Log in</h5>
-                {/* <div className="border border-ligh rounded-1 w-50 mx-auto">
-                <h3 type="button" className="text-light text-center text-2xl m-2" onClick={sum}>Log in with </h3>
-                </div>
-                <h5 className="text-center m-3 text-light">OR</h5> */}
+                <a className=" btn  text-1xl text-center text-light bg-light  bg-opacity-10  w-100 flex items-center justify-center" rel="noreferrer noopener" onClick={sum}>
+                    Log in with
+                    <span className="mx-1 text-3xl">
+                        <FcGoogle/>
+                    </span>
+                </a>
+                <h5 className="text-center m-3 text-light text-2xl">OR</h5>
                 <div className="m-3">
                     <label className="form-label text-light">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
-                    onChange={
-                        (e) => {
-                            setaLoginEmail(e.target.value);
-                        }
-                    }
-                    />
+                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        onChange={
+                            (e) => {
+                                setaLoginEmail(e.target.value);
+                            }
+                        }/>
                 </div>
             <div className="m-3">
                 <label className="form-label text-light">Password</label>
-                <input type="password" className="form-control " id="exampleInputPassword1" 
-                onChange={
-                    (e) => {
-                        setLoginPassword(e.target.value);
-                    }
-                }
-                />
+                <input type="password" className="form-control " id="exampleInputPassword1"
+                    onChange={
+                        (e) => {
+                            setLoginPassword(e.target.value);
+                        }
+                    }/>
             </div>
-            <p className="m-3">
+        <p className="m-3">
             <Link to="/forget" className="nav-link text-danger">Forget Password</Link>
         </p>
-        <p className="m-3 text-danger"> {sk}</p>
+        <p className="m-3 text-danger">
+            {sk}</p>
         <p className="m-3 text-light">If you don't have an account :
             <Link to="/signup" className="nav-link text-danger">Sig nup</Link>
         </p>
-        <button type="submit" className="btn btn-dark m-3" onClick={login}>Log in</button>
+        <button type="submit" className="btn btn-dark m-3"
+            onClick={login}>Log in</button>
     </form>
 </div>
     );
