@@ -1,37 +1,35 @@
-import React,{useEffect,useState} from "react";
+import React, {useEffect, useState} from "react";
 import {onAuthStateChanged} from "firebase/auth";
-import { auth,db } from "./firebase-config";
-import { collection } from "firebase/firestore";
-import {getDocs, } from "firebase/firestore";
-import { doc,deleteDoc} from "firebase/firestore";
+import {auth, db} from "./firebase-config";
+import {doc, deleteDoc} from "firebase/firestore";
 
 
 const Fav = (props) => {
     const {fav} = props;
     const [uid, setuid] = useState("hfhjgvhb");
+    const length =fav.length;
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-              setuid(user.uid);
-               
+                setuid(user.uid);
+
                 console.log(user);
             } else {
                 setuid("");
-               
+
             }
         });
-        fihg();
+
     }, [auth.currentUser]);
 
-    const fihg = async () => {
-        const colRef = collection(db,uid);
-        const snapshots = await getDocs(colRef);
-        const docs = snapshots.docs.map(doc => doc.data());
-        console.log(docs);
-      }
-   
-
+ 
     return (
+        <>
+        { length===0 ? <div>
+            <h2 className="text-white font-serif text-3xl text-center mt-28 ">You have no favourite items</h2>
+            <h2 className="text-white font-serif text-9xl text-center my-20">🙅</h2>
+            
+        </div>  :
         <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72">
             {
             fav.map(fav => (
@@ -62,32 +60,37 @@ const Fav = (props) => {
                                     }</h6>
                                 </li>
                                 <div className="border border-light border  border-opacity-25">
-                                <a href={
-                                fav.url
-                            }
-                            className="btn  text-light bg-light  bg-opacity-10  w-100"
-                            target="_blank"
-                            rel="noreferrer noopener">Go to contest &#10148;</a>
-                            </div>
-                             <div className="border border-light border  border-opacity-25">
-                    <button  className="btn  text-light bg-light  bg-opacity-10  w-100" onClick={
-                       async (e) =>{
-                            
-                                deleteDoc(doc(db,uid,fav.name));
-                                alert("Deleted from favourites");
-                                fihg();
-                              
-                       }
-                    }> Delete from fav &#9825;</button>
-                    </div>  
-                  
-                    </ul>
+                                    <a href={
+                                            fav.url
+                                        }
+                                        className="btn  text-light bg-light  bg-opacity-10  w-100"
+                                        target="_blank"
+                                        rel="noreferrer noopener">Go to contest &#10148;</a>
+                                </div>
+                                <div className="border border-light border  border-opacity-25">
+                                    <button className="btn  text-light bg-light  bg-opacity-10  w-100"
+                                        onClick={
+                                            async (e) => {
+
+                                                deleteDoc(doc(db, uid, fav.name));
+                                                alert("Deleted from favourites");
+
+
+                                            }
+                                    }>
+                                        Delete from fav &#9825;</button>
+                                </div>
+
+                            </ul>
                         </div>
                     </div>
                 </div>
             ))
         } </div>
+    }
+    </>
     );
 };
+
 
 export default Fav;

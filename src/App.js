@@ -14,6 +14,7 @@ import Sites from './components/Sites';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase-config";
 import Fav from "./components/Fav"
+import Wishes from './components/Wishes';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
 
         <BrowserRouter>
        <Navbar setfav={setfav} />
+       <Wishes />
        <Searchbar search={search}
                 onSubmit={onSearchClick}
                 onInputChange={onInputChange}
