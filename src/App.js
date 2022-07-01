@@ -79,7 +79,7 @@ function App() {
 
 
     return (
-         <div className='bg-white dark:bg-dark'>
+        //  <div className="w-full bg-white dark:bg-gray-900  text-black dark:text-white">
         <BrowserRouter>
        <Navbar setfav={setfav} />
        {/* <button className='btn btn-light mt-28' onClick={darkl}> click me</button> */}
@@ -126,7 +126,7 @@ function App() {
           </div>} />
             </Routes>
         </BrowserRouter>
-        </div>
+        // </div>
         
     );
 }
