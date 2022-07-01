@@ -25,36 +25,36 @@ const Fav = (props) => {
  
     return (
         <>
-        { length===0 ? <div>
+        { length===0 ? <div className="bg-slate-800 dark:bg-black">
             <h2 className="text-white font-serif text-3xl text-center mt-28 ">You have no favourite items</h2>
             <h2 className="text-white font-serif text-9xl text-center my-20">🙅</h2>
             
         </div>  :
-        <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72">
+        <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72 bg-slate-800 dark:bg-black">
             {
             fav.map(fav => (
                 <div className="col">
-                    <div className="card bg-light text-dark bg-opacity-10">
+                    <div className="card bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 text-dark ">
                         <div className="card-body">
                             <ul className="list-group list-group-flush  border border-light border  border-opacity-10">
-                                <li className="list-group-item bg-light text-dark bg-opacity-10  border border-light border  border-opacity-10">
+                                <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 text-dark  border border-light border  border-opacity-10">
                                     <h6 className="text-light">
                                         {
                                         fav.name
                                     }</h6>
                                 </li>
-                                <li className="list-group-item bg-light text-dark bg-opacity-10  border border-light border  border-opacity-10">
+                                <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900   border border-light border  border-opacity-10">
                                     <h6 className="text-light">
                                         {
                                         fav.site
                                     }</h6>
                                 </li>
-                                <li className="list-group-item bg-light text-dark bg-opacity-10  border border-light border  border-opacity-10">
+                                <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900   border border-light border  border-opacity-10">
                                     <h6 className="text-light">Start Time : {
                                         fav.start_time
                                     }</h6>
                                 </li>
-                                <li className="list-group-item bg-light text-dark bg-opacity-10  border border-light border  border-opacity-10">
+                                <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900   border border-light border  border-opacity-10">
                                     <h6 className="text-light">End Time : {
                                         fav.end_time
                                     }</h6>
@@ -63,12 +63,12 @@ const Fav = (props) => {
                                     <a href={
                                             fav.url
                                         }
-                                        className="btn  text-light bg-light  bg-opacity-10  w-100"
+                                        className="btn  text-light bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  w-100"
                                         target="_blank"
                                         rel="noreferrer noopener">Go to contest &#10148;</a>
                                 </div>
                                 <div className="border border-light border  border-opacity-25">
-                                    <button className="btn  text-light bg-light  bg-opacity-10  w-100"
+                                    <button className="btn  text-light bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  w-100"
                                         onClick={
                                             async (e) => {
 

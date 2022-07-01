@@ -41,7 +41,7 @@ export default function Forget() {
             <p className="m-3">
                 <Link to="/login" className="nav-link text-danger">Log in</Link>
             </p>
-            <button type="submit" className="btn btn-dark m-3"
+            <button type="submit" className="btn btn-dark m-3 dark:hover:bg-red-900"
               onClick={forgetpassword} >Send reset link</button>
         </form>
     </div>

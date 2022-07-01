@@ -87,7 +87,7 @@ export default function Login() {
         <p className="m-3 text-light">If you don't have an account :
             <Link to="/signup" className="nav-link text-danger">Sig nup</Link>
         </p>
-        <button type="submit" className="btn btn-dark m-3"
+        <button type="submit" className="btn btn-dark m-3 dark:hover:bg-red-900"
             onClick={login}>Log in</button>
     </form>
 </div>

@@ -6,9 +6,9 @@ const Searchbar = props => {
   
   return (
 
-    <div>
+    <div className="bg-slate-800 dark:bg-black">
       
-        <h2 className="text-white font-serif text-3xl text-center mt-8">Upcoming coding contests</h2>
+        <h2 className="text-fuchsia-400  dark:text-white font-serif text-3xl text-center mt-8">Upcoming coding contests</h2>
     <form className="m-5" onSubmit={onSearchClick}>
   <div className="input-group">
   <input type="text" className="form-control bg-gradient-to-r from-red-800 text-white outline-double" placeholder="Search by username" value={search} onChange={onInputChange}  aria-label="Search by username" aria-describedby="basic-addon2" />
