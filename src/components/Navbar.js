@@ -6,6 +6,7 @@ import {signOut, onAuthStateChanged} from "firebase/auth";
 import { auth,db } from "./firebase-config";
 import { collection } from "firebase/firestore";
 import {getDocs, } from "firebase/firestore";
+import ThemeSwitchButton from "./themeSwitchButton";
 
 
 
@@ -71,7 +72,8 @@ const logout = async () => {
               </div>
             </div>
             <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="ml-10 flex items-baseline space-x-2">
+                <ThemeSwitchButton/>
                 <Link to="/sites" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
                                     Sites
                                 </Link>
@@ -90,6 +92,7 @@ const logout = async () => {
 
                                     ) : null
                                 } </>
+                                
                 </div>
               </div>
             <div className="-mr-2 flex md:hidden">
@@ -166,12 +169,13 @@ const logout = async () => {
                                 <> {
                                     ya ? (
 
-                                        <button type="button" className="btn btn-light bg-gradient-to-r from-indigo-500"
+                                        <button type="button" className="btn btn-light bg-gradient-to-r from-indigo-500 mb-2"
                                             onClick={logout}>
                                             {st}</button>
 
                                     ) : null
                                 } </>
+                                <ThemeSwitchButton/>
               </div>
             </div>
           )}

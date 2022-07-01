@@ -17,11 +17,13 @@ import Fav from "./components/Fav"
 import Wishes from './components/Wishes';
 
 
+
 function App() {
     const [search, setSearch] = useState("all");
     const [contest, setcontest] = useState([]);
     const [yash, setyash] = useState(false);
     const [fav, setfav] = useState([]);
+    const [theme, settheme] = useState("light");
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -36,6 +38,14 @@ function App() {
         });
         getcontest();
       }, [auth.currentUser]);
+
+    //   useEffect(() => {
+    //     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    //         document.documentElement.classList.add('dark')
+    //       } else {
+    //         document.documentElement.classList.remove('dark')
+    //       }
+    //   }, [theme]);
 
     const getcontest = async () => {
         const result = await Axios.get(`https://kontests.net/api/v1/${search}`);
@@ -54,11 +64,25 @@ function App() {
         setSearch("");
     };
 
+    // const darkl = (event) => {
+    //    if(theme === 'light'){
+    //     document.documentElement.classList.add('dark')
+    //     settheme("dark");
+    //     console.log(theme)
+    //    }
+    //    else{
+    //     document.documentElement.classList.remove('dark')
+    //     settheme("light");
+    //     console.log(theme)
+    //    }
+    // };
+
 
     return (
-
+         <div className='bg-white dark:bg-dark'>
         <BrowserRouter>
        <Navbar setfav={setfav} />
+       {/* <button className='btn btn-light mt-28' onClick={darkl}> click me</button> */}
        <Wishes />
        <Searchbar search={search}
                 onSubmit={onSearchClick}
@@ -102,6 +126,7 @@ function App() {
           </div>} />
             </Routes>
         </BrowserRouter>
+        </div>
         
     );
 }
