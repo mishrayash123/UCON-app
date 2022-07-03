@@ -62,7 +62,7 @@ export default function Signup() {
                 className=" mx-auto w-50 mt-5  bg-light text-dark bg-opacity-10 border border-light border border-3 border-opacity-10 rounded">
                 <h5 className="text-center m-3 text-light text-2xl">Sign up</h5>
                 <a className=" btn  text-1xl text-center text-light bg-light  bg-opacity-10  w-100 flex items-center justify-center" rel="noreferrer noopener" onClick={sum2}>
-                    Sign in with
+                    Sign up with
                     <span className="mx-1 text-3xl">
                         <FcGoogle/>
                     </span>
