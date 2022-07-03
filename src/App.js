@@ -79,7 +79,7 @@ function App() {
 
 
     return (
-         <div className="bg-slate-800 dark:bg-black">
+         <div className="bg-rose-100 dark:bg-black">
         <BrowserRouter>
        <Navbar setfav={setfav} />
        {/* <button className='btn btn-light mt-28' onClick={darkl}> click me</button> */}

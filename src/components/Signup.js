@@ -59,16 +59,16 @@ export default function Signup() {
     return (
         <div className="mt-5 mb-72">
             <form onSubmit={signup} 
-                className=" mx-auto w-50 mt-5  bg-light text-dark bg-opacity-10 border border-light border border-3 border-opacity-10 rounded">
-                <h5 className="text-center m-3 text-light text-2xl">Sign up</h5>
-                <a className=" btn  text-1xl text-center text-light bg-light  bg-opacity-10  w-100 flex items-center justify-center" rel="noreferrer noopener" onClick={sum2}>
+                className=" mx-auto w-50 mt-5 bg-slate-900 dark:bg-white/25 text-dark bg-opacity-10 border border-light border border-3 border-opacity-10 rounded">
+                <h5 className="text-center m-3 dark:text-white text-2xl">Sign up</h5>
+                <a className=" btn  text-1xl text-center dark:text-white bg-light  bg-opacity-10  w-100 flex items-center justify-center" rel="noreferrer noopener" onClick={sum2}>
                     Sign up with
                     <span className="mx-1 text-3xl">
                         <FcGoogle/>
                     </span>
                 </a>
                 <div className="m-3">
-                    <label className="form-label text-light">Email address</label>
+                    <label className="form-label dark:text-white">Email address</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         onChange={
                             (e) => {
@@ -78,7 +78,7 @@ export default function Signup() {
                        />
                 </div>
             <div className="m-3">
-                <label className="form-label text-light">Password</label>
+                <label className="form-label dark:text-white">Password</label>
                 <input type="password" className="form-control" id="exampleInputPassword1"
                     onChange={
                         (e) => {
@@ -89,7 +89,7 @@ export default function Signup() {
             </div>
         <p className="m-3 text-danger">
         {sy} </p>
-        <p className="m-3 text-light">If you have an account :
+        <p className="m-3 dark:text-white">If you have an account :
             <Link to="/login" className="nav-link text-danger">Log in</Link>
         </p>
         <button type="submit" className="btn btn-dark m-3 dark:hover:bg-red-900"

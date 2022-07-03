@@ -25,12 +25,12 @@ const Fav = (props) => {
  
     return (
         <>
-        { length===0 ? <div className="bg-slate-800 dark:bg-black">
-            <h2 className="text-white font-serif text-3xl text-center mt-28 ">You have no favourite items</h2>
-            <h2 className="text-white font-serif text-9xl text-center my-20">🙅</h2>
+        { length===0 ? <div className="bg-rose-100 dark:bg-black">
+            <h2 className="dark:text-white font-serif text-3xl text-center mt-28 ">You have no favourite items</h2>
+            <h2 className="text-white font-serif text-9xl text-center my-20 mb-56">🙅</h2>
             
         </div>  :
-        <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72 bg-slate-800 dark:bg-black">
+        <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72 bg-rose-100 dark:bg-black">
             {
             fav.map(fav => (
                 <div className="col">

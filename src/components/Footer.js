@@ -3,7 +3,7 @@ import React from "react";
 const Footer = props => {
 
     return(
-        <div className="bg-gradient-to-r from-pink-900 to-violet-900 border border-light border  border-opacity-10 " >
+        <div className=" fixed-bottom bg-gradient-to-r from-rose-700 to-yellow-800 border border-light border  border-opacity-10 " >
           <div className="">
         <h5 className=" text-center text-light mt-2 mb-2 italic font-bold">Made ♡ with <a target="_blank"  href="https://reactjs.org/">
         React.js

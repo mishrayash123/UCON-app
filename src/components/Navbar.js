@@ -51,7 +51,7 @@ const logout = async () => {
 
   return (
     <div className="fixed-top">
-      <nav className="bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
+      <nav className="bg-gradient-to-r from-blue-700 via-fuchsia-600 to-pink-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
