@@ -41,6 +41,10 @@ const Contest = () => {
       }, [auth.currentUser]);
 
     return (
+        <div>
+        {
+                contest.length===0 ?<h2 className="text-center font-bold text-2xl">Sorry there is no Contests</h2> :""
+            }
         <div className="row row-cols-1 row-cols-md-3 mx-3 g-4 mt-4 mb-72">
             {
             contest.map(contest => (
@@ -106,6 +110,7 @@ const Contest = () => {
                 </div>
             ))
         } </div>
+          </div>
     );
 };
 
