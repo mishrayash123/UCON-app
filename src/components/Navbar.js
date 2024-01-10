@@ -24,7 +24,6 @@ const Navbar =({setfav}) => {
           setya(true);
           setuid(user.uid);
             setst(user.email);
-            console.log(user);
         } else {
           setya(false);
           setuid("");
@@ -38,7 +37,6 @@ const fidata = async () => {
   const snapshots = await getDocs(colRef);
   const docs = snapshots.docs.map(doc => doc.data());
   setfav(docs);
-  console.log(docs);
 }
 
 const logout = async () => {
@@ -74,14 +72,8 @@ const logout = async () => {
             <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-2">
                 <ThemeSwitchButton/>
-                <Link to="/sites" className="hover:bg-black text-white block px-3 py-2 rounded-md text-base font-medium">
-                                    Sites
-                                </Link>
                                 <Link to="/fav" className=" hover:bg-black text-white px-3 py-2 rounded-md text-sm font-medium" onClick={fidata}>
                                 Favourites
-                                </Link>
-                                <Link to="/login" className=" hover:bg-black text-white px-3 py-2 rounded-md text-sm font-medium">
-                                    Log in
                                 </Link>
                                 <> {
                                     ya ? (
@@ -90,7 +82,10 @@ const logout = async () => {
                                             onClick={logout}>
                                             {st}</button>
 
-                                    ) : null
+                                    ) :
+                                    <Link to="/login" className=" hover:bg-black text-white px-3 py-2 rounded-md text-sm font-medium">
+                                        Log in
+                                    </Link>
                                 } </>
                                 
                 </div>
@@ -157,14 +152,8 @@ const logout = async () => {
               <Link to="/" className="hover:bg-black text-white block px-3 py-2 rounded-md text-base font-medium">
                                     Home
                                 </Link>
-                                <Link to="/sites" className="hover:bg-black text-white block px-3 py-2 rounded-md text-base font-medium">
-                                    Sites
-                                </Link>
                                 <Link to="/fav" className=" hover:bg-black text-white px-3 py-2 rounded-md text-sm font-medium" onClick={fidata}>
                                 Favourites
-                                </Link>
-                                <Link to="/login" className="hover:bg-black text-white block px-3 py-2 rounded-md text-base font-medium">
-                                    Log in
                                 </Link>
                                 <> {
                                     ya ? (
@@ -173,7 +162,9 @@ const logout = async () => {
                                             onClick={logout}>
                                             {st}</button>
 
-                                    ) : null
+                                    ) : <Link to="/login" className="hover:bg-black text-white block px-3 py-2 rounded-md text-base font-medium">
+                                    Log in
+                                </Link>
                                 } </>
                                 <ThemeSwitchButton/>
               </div>

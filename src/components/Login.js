@@ -5,10 +5,11 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from './firebase-config';
 import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {FcGoogle} from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login() {
-
+  const nav = useNavigate()
     const [LoginEmail, setaLoginEmail] = useState("");
     const [LoginPassword, setLoginPassword] = useState("");
     const [sk, setsk] = useState("");
@@ -23,6 +24,7 @@ export default function Login() {
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
+            nav('/')
             // ...
         }).catch((error) => { // Handle Errors here.
             const errorCode = error.code;
@@ -41,6 +43,7 @@ export default function Login() {
         signInWithEmailAndPassword(auth, LoginEmail, LoginPassword).then((userCredential) => { // Signed in
             const user = userCredential.user;
             alert("user signed in successfully");
+            nav('/')
             // ...
         }).catch((error) => {
             const errorCode = error.code;

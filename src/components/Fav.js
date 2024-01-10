@@ -12,8 +12,6 @@ const Fav = (props) => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setuid(user.uid);
-
-                console.log(user);
             } else {
                 setuid("");
 
@@ -50,14 +48,13 @@ const Fav = (props) => {
                                     }</h6>
                                 </li>
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900   border border-light border  border-opacity-10">
-                                    <h6 className="text-light">Start Time : {
-                                        fav.start_time
-                                    }</h6>
+                                    <h6 className="text-light">Start Date : {new Date(fav.start_time).toDateString()} {new Date(fav.start_time).toTimeString()}</h6>
                                 </li>
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900   border border-light border  border-opacity-10">
-                                    <h6 className="text-light">End Time : {
-                                        fav.end_time
-                                    }</h6>
+                                    <h6 className="text-light">End Time : {new Date(fav.end_time).toDateString()} {new Date(fav.end_time).toTimeString()}</h6>
+                                </li>
+                                <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900   border border-light border  border-opacity-10">
+                                    <h6 className="text-light"> Duration : {parseInt(fav.duration)/(60 * 60)} hr</h6>
                                 </li>
                                 <div className="border border-light border  border-opacity-25">
                                     <a href={

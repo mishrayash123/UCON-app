@@ -4,10 +4,31 @@ import { db } from "./firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 import {  getDoc } from "firebase/firestore";
+import { useLocation } from "react-router-dom";
 
-const Contest = (props) => {
-    const {contest} = props;
+const Contest = () => {
+    const location = useLocation();
+    const [contest, setcontest] = useState([]);
     const [uid, setuid] = useState("hfhgbjhn");
+
+
+    const getcontest = async () => {
+        fetch(`https://contest-hive.vercel.app/api/${location.state.id}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setcontest(data.data)
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+    }
+
+
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
           if (user) {
@@ -16,7 +37,7 @@ const Contest = (props) => {
            setuid("");
           }
         });
-        
+        getcontest()
       }, [auth.currentUser]);
 
     return (
@@ -30,33 +51,22 @@ const Contest = (props) => {
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  border border-light border  border-opacity-10">
                                     <h6 className="text-light">
                                         {
-                                        contest.name
+                                        contest.title
                                     }</h6>
                                 </li>
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  border border-light border  border-opacity-10">
                                     <h6 className="text-light">
-                                        {
-                                        contest.site
-                                    }</h6>
+                                    Start Date : {new Date(contest.startTime).toDateString()} {new Date(contest.startTime).toTimeString()}</h6>
                                 </li>
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  border border-light border  border-opacity-10">
-                                    <h6 className="text-light">Status : {
-                                        contest.status
-                                    }</h6>
+                                    <h6 className="text-light">End Time : {new Date(contest.endTime).toDateString()} {new Date(contest.endTime).toTimeString()}</h6>
                                 </li>
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  border border-light border  border-opacity-10">
-                                    <h6 className="text-light">In 24 hour : {
-                                        contest.in_24_hours
-                                    }</h6>
+                                    <h6 className="text-light">Duration : {parseInt(contest.duration)/(60 * 60)} hr</h6>
                                 </li>
                                 <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  border border-light border  border-opacity-10">
-                                    <h6 className="text-light">Start Time : {
-                                        contest.start_time
-                                    }</h6>
-                                </li>
-                                <li className="list-group-item bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900  border border-light border  border-opacity-10">
-                                    <h6 className="text-light">End Time : {
-                                        contest.end_time
+                                    <h6 className="text-light">Site : {
+                                        location.state.id
                                     }</h6>
                                 </li>
                                 <div className="border border-light border  border-opacity-25 ">
@@ -71,16 +81,17 @@ const Contest = (props) => {
                             <div className="border border-light border  border-opacity-25">
                             <button  className="btn  text-light bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 w-100" onClick={
                        async (e) =>{
-                            const docRef = doc(db, uid,contest.name );
+                            const docRef = doc(db, uid,contest.title );
                             const docSnap = await getDoc(docRef);
                             if (docSnap.exists()) {
                                 alert("Already in favourites");
                               } else {
-                                setDoc(doc(db,uid,contest.name), {
-                                    name : contest.name,
-                                    site : contest.site,
-                                    start_time:contest.start_time,
-                                    end_time: contest.end_time,
+                                setDoc(doc(db,uid,contest.title), {
+                                    name : contest.title,
+                                    site :location.state.id,
+                                    start_time:contest.startTime,
+                                    end_time: contest.endTime,
+                                    duration:contest.duration,
                                     url : contest.url  
                                   }
                                   );
